@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  email:
+    image: djfarrelly/maildev
+    ports:
+      - "8080:80"
+      - "25:25"
+    
+    php-apache:
+    build: .
+   
+    volumes:
+      - ./html:/var/www/html  # แชร์ไฟล์เว็บไซต์ของคุณ
+    depends_on:
+      - email  # PHP จะรันหลังจาก MailDev พร้อมใช้งาน
